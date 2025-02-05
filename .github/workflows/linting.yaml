@@ -36,7 +36,7 @@ jobs:
       - name: Run TFLint on Modules
         run: |
           folder=modules
-          tf_files=`find $folder -iname '*.tf'`
+          tf_files=`find "$folder" -type f -iname '*.tf' ! -iname 'variables.tf'
           for i in $tf_files; do
             tflint --config=$i
           done
