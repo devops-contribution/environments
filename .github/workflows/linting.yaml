@@ -33,20 +33,9 @@ jobs:
       - name: check dir
         run: ls && pwd
         
-      - name: Run TFLint on modules
+      - name: Run TFLint
         run: |
-          for dir in modules/*; do
-            if [ -d "$dir" ]; then
-              echo "Running TFLint on $dir"
-              tflint --chdir="$dir"
-            fi
-          done
-
-      - name: Run TFLint on environment resources
-        run: |
-          for dir in env/*/us-east-1/resources/*; do
-            if [ -d "$dir" ]; then
-              echo "Running TFLint on $dir"
-              tflint --chdir="$dir"
-            fi
+          tf_files=`find . -iname '*.tf'`
+          for i in $tf_files; do
+            tflint --config=$i
           done
