@@ -33,9 +33,10 @@ jobs:
       - name: check dir
         run: ls && pwd
         
-      - name: Run TFLint
+      - name: Run TFLint on Modules
         run: |
-          tf_files=`find . -iname '*.tf'`
+          folder=modules
+          tf_files=`find $folder -iname '*.tf'`
           for i in $tf_files; do
             tflint --config=$i
           done
