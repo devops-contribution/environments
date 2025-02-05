@@ -1,0 +1,49 @@
+name: Terraform Lint
+
+on:
+  push:
+    branches:
+      - main
+  #pull_request:
+  #  branches:
+  #    - main
+
+jobs:
+  lint:
+    name: Lint Terraform Scripts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+
+      - name: Check Terraform Formatting
+        run: terraform fmt -check -recursive
+
+      - name: Install TFLint
+        run: |
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+          tflint --init
+
+      - name: Run TFLint on modules
+        run: |
+          for dir in modules/*; do
+            if [ -d "$dir" ]; then
+              echo "Running TFLint on $dir"
+              tflint --chdir="$dir"
+            fi
+          done
+
+      - name: Run TFLint on environment resources
+        run: |
+          for dir in env/*/us-east-1/resources/*; do
+            if [ -d "$dir" ]; then
+              echo "Running TFLint on $dir"
+              tflint --chdir="$dir"
+            fi
+          done
