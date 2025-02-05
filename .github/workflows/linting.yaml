@@ -30,6 +30,9 @@ jobs:
           curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
           tflint --init
 
+      - name: check dir
+        run: ls && pwd
+        
       - name: Run TFLint on modules
         run: |
           for dir in modules/*; do
