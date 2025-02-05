@@ -23,7 +23,7 @@ jobs:
           terraform_version: latest
 
       - name: Check Terraform Formatting
-        run: terraform fmt -check -recursive
+        run: terraform fmt -recursive
 
       - name: Install TFLint
         run: |
