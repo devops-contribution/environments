@@ -1,3 +1,7 @@
+provider "aws" {
+  region = var.region
+}
+
 module "vpc" {
   source          = "git::https://github.com/devops-contribution/shared-modules.git//modules/vpc?ref=main"
   region          = var.region
