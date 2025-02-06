@@ -27,7 +27,6 @@ jobs:
 
       - name: Validate & Plan
         run: |
-          echo "dir=env/dev/us-east-1/resources/vpc" >>GITHUB_ENV
-          terraform -chdir=$dir init
-          terraform -chdir=$dir validate
-          terraform -chdir=$dir plan -out=tfplan
+          terraform -chdir=env/dev/us-east-1/resources/vpc init
+          terraform -chdir=env/dev/us-east-1/resources/vpc validate
+          terraform -chdir=env/dev/us-east-1/resources/vpc plan -out=tfplan
