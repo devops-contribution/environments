@@ -20,17 +20,14 @@ jobs:
         with:
           terraform_version: latest
 
-      - name: Find Terraform Directories
-        id: find-dirs
-        run: |
-          echo "directories=$(find env -type f -name 'main.tf' -exec dirname {} \; | sort | uniq | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_ENV
+      #- name: Find Terraform Directories
+      #  id: find-dirs
+      #  run: |
+      #    echo "directories=$(find modules -type f -name 'main.tf' -exec dirname {} \; | sort | uniq | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_ENV
 
       - name: Validate & Plan
         run: |
-          for dir in $(echo $directories | jq -r '.[]'); do
-            echo "Processing $dir"
-            terraform -chdir=$dir init
-            terraform -chdir=$dir validate
-            terraform -chdir=$dir plan -out=tfplan
-          done
-
+          echo "dir=env/dev/us-east-1/resources/vpc" >>GITHUB_ENV
+          terraform -chdir=$dir init
+          terraform -chdir=$dir validate
+          terraform -chdir=$dir plan -out=tfplan
