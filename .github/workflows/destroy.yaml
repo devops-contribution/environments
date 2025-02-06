@@ -34,6 +34,12 @@ jobs:
         with:
           name: terraform-state
 
+      - name: Configure AWS creds
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::014337110715:role/github-actions-role
+          aws-region: us-east-1
+
       - name: Destroy Terraform Resources
         run: |
           terraform -chdir=env/dev/us-east-1/resources/vpc init
