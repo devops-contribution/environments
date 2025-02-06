@@ -43,7 +43,4 @@ jobs:
           terraform -chdir=env/dev/us-east-1/resources/vpc apply -auto-approve
 
       - name: Upload statefile
-        uses: actions/upload-artifact@v4
-        with:
-          name: terraform-state
-          path: env/dev/us-east-1/resources/vpc/terraform.tfstate
+        run: aws s3 cp  env/dev/us-east-1/resources/vpc/terraform.tfstate s3://remote-backend-for-tf/env/dev/us-east-1/resources/vpc/terraform.tfstate
