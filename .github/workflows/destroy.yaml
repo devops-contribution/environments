@@ -21,11 +21,6 @@ jobs:
   destroy:
     runs-on: ubuntu-latest
   
-    strategy:
-      matrix:
-        dir:
-          - "env/dev/us-east-1/resources/"
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,6 +41,6 @@ jobs:
      
       - name: Destroy Terraform Resources
         run: |
-          terraform -chdir=${{ matrix.dir }} init
-          terraform -chdir=${{ matrix.dir }} destroy -target=module."${{ inputs.resource_name }}" -auto-approve
+          terraform -chdir=env/dev/us-east-1/resources init
+          terraform -chdir=env/dev/us-east-1/resources destroy -target=module."${{ inputs.resource_name }}" -auto-approve
 

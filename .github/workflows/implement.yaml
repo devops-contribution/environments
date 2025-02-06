@@ -15,11 +15,6 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        dir:
-          - "env/dev/us-east-1/resources/"
-
     environment: dev # Approval is needed for all envs.
 
     steps:
@@ -46,8 +41,8 @@ jobs:
 
       - name: Apply changes
         run: |
-          terraform -chdir=${{ matrix.dir }} init
-          terraform -chdir=${{ matrix.dir }} apply -auto-approve
+          terraform -chdir=env/dev/us-east-1/resources init
+          terraform -chdir=env/dev/us-east-1/resources apply -auto-approve
 
       - name: Upload statefile
         run: aws s3 cp env/dev/us-east-1/resources/vpc/terraform.tfstate s3://remote-backend-for-tf/env/dev/us-east-1/resources/vpc/terraform.tfstate
