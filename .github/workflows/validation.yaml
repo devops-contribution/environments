@@ -26,7 +26,7 @@ jobs:
         with:
           terraform_version: latest
 
-      - name: configure AWS creds
+      - name: Configure AWS creds
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::014337110715:role/github-actions-role
