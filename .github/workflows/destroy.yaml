@@ -5,8 +5,13 @@ on:
   inputs:
     resource_name:
       required: true
-      type: string
+      type: choice
+      default: "vpc"
       description: "Confirm the resource to be destroyed"
+      options:
+        - vpc
+        - eks
+        - node-group
 
 permissions:
   id-token: write
