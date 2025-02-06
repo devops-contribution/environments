@@ -1,7 +1,6 @@
 name: Terraform Validate & Plan
 
 on:
-  pull_request:
   push:
     branches:
       - main
