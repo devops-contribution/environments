@@ -20,8 +20,7 @@ jobs:
     strategy:
       matrix:
         dir:
-          - "env/dev/us-east-1/resources/vpc"
-          - "env/dev/us-east-1/resources/eks"
+          - "env/dev/us-east-1/resources/"
 
     steps:
       - name: Checkout Repository
