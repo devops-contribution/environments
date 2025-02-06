@@ -2,16 +2,16 @@ name: Destroy
 
 on:
   workflow_dispatch:
-  inputs:
-    resource_name:
-      required: true
-      type: choice
-      default: "vpc"
-      description: "Confirm the resource to be destroyed"
-      options:
-        - vpc
-        - eks
-        - node-group
+    inputs:
+      resource_name:
+        required: true
+        type: choice
+        default: "vpc"
+        description: "Confirm the resource to be destroyed"
+        options:
+          - vpc
+          - eks
+          - node-group
 
 permissions:
   id-token: write
