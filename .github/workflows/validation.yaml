@@ -36,10 +36,10 @@ jobs:
         run: |
           terraform -chdir=env/dev/us-east-1/resources/vpc init
           terraform -chdir=env/dev/us-east-1/resources/vpc validate
-          terraform -chdir=env/dev/us-east-1/resources/vpc plan -out=tfplan
+          terraform -chdir=env/dev/us-east-1/resources/vpc plan -out=plan.out
     
       - name: Upload validation artifact
         uses: actions/upload-artifact@v4
         with:
           name: validation-result
-          path: validation.txt
+          path: env/dev/us-east-1/resources/vpc/plan.out
