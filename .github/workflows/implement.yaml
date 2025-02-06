@@ -29,5 +29,6 @@ jobs:
 
       - name: Apply changes
         run: |
+          terraform -chdir=env/dev/us-east-1/resources/vpc init
           terraform -chdir=env/dev/us-east-1/resources/vpc apply -auto-approve
 
