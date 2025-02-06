@@ -34,6 +34,6 @@ jobs:
         run: |
           terraform -chdir=remote-backend-resource init
           terraform -chdir=remote-backend-resource validate
-          terraform -chdir=remote-backend-resource plan -out=plan.out
-          terraform -chdir=remote-backend-resource apply plan.out -auto-approve
+          terraform -chdir=remote-backend-resource plan
+          terraform -chdir=remote-backend-resource apply -auto-approve
 
