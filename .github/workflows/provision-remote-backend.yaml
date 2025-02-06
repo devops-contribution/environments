@@ -1,6 +1,7 @@
 name: Remote Backend
 
 on:
+  workflow_dispatch:
   push:
     branches: ["main"]
   paths:
