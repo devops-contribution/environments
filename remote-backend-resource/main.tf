@@ -10,10 +10,10 @@ resource "aws_s3_bucket_versioning" "versioning" {
 }
 
 
-resource "aws_dynamo_table" "terraform-locks" {
-  name = var.lock_name
+resource "aws_dynamodb_table" "terraform-locks" {
+  name         = var.lock_name
   billing_mode = "PAY_PER_REQUEST"
-  hash_key = "LockID"
+  hash_key     = "LockID"
   attribute {
     name = "LockID"
     type = "S"
