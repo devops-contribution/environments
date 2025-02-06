@@ -13,6 +13,13 @@ permissions:
 jobs:
   wait-for-approval:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        dir:
+          - "env/dev/us-east-1/resources/vpc"
+          - "env/dev/us-east-1/resources/eks"
+
     environment: dev # Approval is needed for all envs.
 
     steps:
@@ -39,8 +46,8 @@ jobs:
 
       - name: Apply changes
         run: |
-          terraform -chdir=env/dev/us-east-1/resources/vpc init
-          terraform -chdir=env/dev/us-east-1/resources/vpc apply -auto-approve
+          terraform -chdir=${{ matrix.dir }} init
+          terraform -chdir=${{ matrix.dir }} apply -auto-approve
 
       - name: Upload statefile
         run: aws s3 cp env/dev/us-east-1/resources/vpc/terraform.tfstate s3://remote-backend-for-tf/env/dev/us-east-1/resources/vpc/terraform.tfstate

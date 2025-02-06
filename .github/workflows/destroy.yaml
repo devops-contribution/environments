@@ -20,6 +20,13 @@ permissions:
 jobs:
   destroy:
     runs-on: ubuntu-latest
+  
+    strategy:
+      matrix:
+        dir:
+          - "env/dev/us-east-1/resources/vpc"
+          - "env/dev/us-east-1/resources/eks"
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -40,6 +47,6 @@ jobs:
      
       - name: Destroy Terraform Resources
         run: |
-          terraform -chdir=env/dev/us-east-1/resources/vpc init
-          terraform -chdir=env/dev/us-east-1/resources/vpc destroy -target=module."${{ inputs.resource_name }}" -auto-approve
+          terraform -chdir=${{ matrix.dir }} init
+          terraform -chdir=${{ matrix.dir }} destroy -target=module."${{ inputs.resource_name }}" -auto-approve
 
