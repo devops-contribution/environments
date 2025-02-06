@@ -1,5 +1,15 @@
 provider "aws" {
   region = var.region
+
+
+  default_tags {
+    tags = {
+      GithubRepo       = "https://github.com/devops-contribution/environments.git"
+      GithubOrg        = "devops-contribution"
+      Enviroment       = "dev"
+      Created-using    = "terraform"
+    }
+  }
 }
 
 module "vpc" {
