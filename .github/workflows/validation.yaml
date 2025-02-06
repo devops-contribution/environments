@@ -20,10 +20,11 @@ jobs:
         with:
           terraform_version: latest
 
-      #- name: Find Terraform Directories
-      #  id: find-dirs
-      #  run: |
-      #    echo "directories=$(find modules -type f -name 'main.tf' -exec dirname {} \; | sort | uniq | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_ENV
+      - name: configure AWS creds
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::014337110715:role/github-actions-role
+          aws-region: us-east-1
 
       - name: Validate & Plan
         run: |
