@@ -1,2 +1,2 @@
-bucket_name = "terraform-state-bucket"
+bucket_name = "terraform-remote-be-bucket"
 lock_name   = "terraform-locks"
