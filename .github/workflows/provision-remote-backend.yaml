@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: ["main"]
-  paths:
-    - "remote-backend-resource/"
+    paths:
+      - "remote-backend-resource/"
 
 permissions:
   id-token: write
