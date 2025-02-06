@@ -2,7 +2,7 @@ name: Remote Backend
 
 on:
   push:
-    branch: ["main"]
+    branches: ["main"]
   paths:
     - "remote-backend-resource/"
 
