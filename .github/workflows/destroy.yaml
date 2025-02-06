@@ -2,16 +2,6 @@ name: Destroy
 
 on:
   workflow_dispatch:
-    inputs:
-      resource_name:
-        required: true
-        type: choice
-        default: "vpc"
-        description: "Confirm the resource to be destroyed"
-        options:
-          - vpc
-          - eks
-          - node-group
 
 permissions:
   id-token: write
@@ -42,5 +32,4 @@ jobs:
       - name: Destroy Terraform Resources
         run: |
           terraform -chdir=env/dev/us-east-1/resources init
-          terraform -chdir=env/dev/us-east-1/resources destroy -target=module."${{ inputs.resource_name }}" -auto-approve
-
+          terraform -chdir=env/dev/us-east-1/resources destroy  -auto-approve
