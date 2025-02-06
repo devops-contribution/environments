@@ -27,6 +27,12 @@ jobs:
         with:
           terraform_version: latest
 
+      - name: configure AWS creds
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::014337110715:role/github-actions-role
+          aws-region: us-east-1
+
       - name: Apply changes
         run: |
           terraform -chdir=env/dev/us-east-1/resources/vpc init
