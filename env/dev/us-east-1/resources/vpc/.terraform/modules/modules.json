@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"vpc","Source":"git::https://github.com/devops-contribution/shared-modules.git//modules/vpc?ref=main","Dir":".terraform/modules/vpc/modules/vpc"}]}
