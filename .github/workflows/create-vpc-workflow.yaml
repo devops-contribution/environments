@@ -2,7 +2,7 @@ name: Create VPC
 
 on:
   workflow_run:
-    workflows: ["Validation"]
+    workflows: ["Validate VPC"]
     types:
       - completed
 
