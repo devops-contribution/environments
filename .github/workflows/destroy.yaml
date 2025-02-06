@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  dstroy-changes:
+  destroy-changes:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
