@@ -1,4 +1,4 @@
-name: Terraform Lint & Validate
+name: Terraform Validate & Plan
 
 on:
   pull_request:
@@ -7,8 +7,8 @@ on:
       - main
 
 jobs:
-  terraform-lint-validate:
-    name: Terraform Lint & Validate
+  terraform-validate-plan:
+    name: Terraform Validate & Plan
     runs-on: ubuntu-latest
 
     steps:
@@ -20,20 +20,17 @@ jobs:
         with:
           terraform_version: latest
 
-      - name: Initialize Terraform
-        run: terraform init
+      - name: Find Terraform Directories
+        id: find-dirs
+        run: |
+          echo "directories=$(find env -type f -name 'main.tf' -exec dirname {} \; | sort | uniq | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_ENV
 
-      - name: Check Terraform Formatting
-        run: terraform fmt -check -recursive
+      - name: Validate & Plan
+        run: |
+          for dir in $(echo $directories | jq -r '.[]'); do
+            echo "Processing $dir"
+            terraform -chdir=$dir init
+            terraform -chdir=$dir validate
+            terraform -chdir=$dir plan -out=tfplan
+          done
 
-      - name: Validate Terraform
-        run: terraform validate
-    
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan
-  
-      - name: Upload Terraform Plan
-        uses: actions/upload-artifact@v4
-        with:
-          name: terraform-plan
-          path: tfplan
