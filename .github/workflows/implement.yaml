@@ -22,11 +22,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Download validation artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: validation-result
-
       - name: Apply changes
         run: |
           terraform -chdir=env/dev/us-east-1/resources/vpc apply -auto-approve
