@@ -45,4 +45,4 @@ jobs:
           terraform -chdir=env/dev/us-east-1/resources apply -auto-approve
 
       - name: Upload statefile
-        run: aws s3 cp env/dev/us-east-1/resources/vpc/terraform.tfstate s3://remote-backend-for-tf/env/dev/us-east-1/resources/vpc/terraform.tfstate
+        run: aws s3 cp env/dev/us-east-1/resources/terraform.tfstate s3://remote-backend-for-tf/env/dev/us-east-1/resources/vpc/terraform.tfstate
