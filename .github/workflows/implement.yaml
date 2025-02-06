@@ -37,12 +37,12 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::014337110715:role/github-actions-role
-          aws-region: us-east-1
+          aws-region: us-west-2
 
       - name: Apply changes
         run: |
-          terraform -chdir=env/dev/us-east-1/resources init
-          terraform -chdir=env/dev/us-east-1/resources apply -auto-approve
+          terraform -chdir=env/dev/us-west-2/resources init
+          terraform -chdir=env/dev/us-west-2/resources apply -auto-approve
 
       - name: Upload statefile
-        run: aws s3 cp env/dev/us-east-1/resources/terraform.tfstate s3://remote-backend-for-tf/env/dev/us-east-1/resources/vpc/terraform.tfstate
+        run: aws s3 cp env/dev/us-west-2/resources/terraform.tfstate s3://remote-backend-for-tf/env/dev/us-west-2/resources/vpc/terraform.tfstate

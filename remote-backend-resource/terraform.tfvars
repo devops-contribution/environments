@@ -1,2 +1,2 @@
-bucket_name = "my-terraform-state-bucket"
+bucket_name = "terraform-state-bucket"
 lock_name   = "terraform-locks"
