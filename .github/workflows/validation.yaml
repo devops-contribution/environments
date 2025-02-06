@@ -32,6 +32,6 @@ jobs:
 
       - name: Validate & Plan
         run: |
-          terraform -chdir=env/dev/us-east-1/resources/vpc init
-          terraform -chdir=env/dev/us-east-1/resources/vpc validate
-          terraform -chdir=env/dev/us-east-1/resources/vpc plan -out=tfplan
+          terraform -chdir=env/dev/us-east-1/resources/* init
+          terraform -chdir=env/dev/us-east-1/resources/* validate
+          terraform -chdir=env/dev/us-east-1/resources/* plan -out=tfplan
