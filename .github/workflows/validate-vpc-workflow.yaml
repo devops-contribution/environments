@@ -1,4 +1,4 @@
-name: Validation
+name: Validate VPC
 
 on:
   workflow_dispatch:
