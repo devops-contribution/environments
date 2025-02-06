@@ -1,7 +1,7 @@
 provider "aws" {
   region = var.region
 
-
+  # Setting tags at broader level
   default_tags {
     tags = {
       GithubRepo       = "https://github.com/devops-contribution/environments.git"
