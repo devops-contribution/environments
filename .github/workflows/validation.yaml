@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "env/dev/us-east-1/resources/*"
+      - "env/dev/us-east-1/resources/**"
 
 permissions:
   id-token: write
