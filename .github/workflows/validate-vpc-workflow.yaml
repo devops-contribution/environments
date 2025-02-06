@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "env/dev/us-west-2/resources/**"
+      - "env/dev/us-west-2/vpc/**"
 
 permissions:
   id-token: write
@@ -34,6 +34,6 @@ jobs:
 
       - name: Validate & Plan
         run: |
-          terraform -chdir=env/dev/us-west-2/resources init
-          terraform -chdir=env/dev/us-west-2/resources validate
-          terraform -chdir=env/dev/us-west-2/resources plan -out=plan.out
+          terraform -chdir=env/dev/us-west-2/vpc init
+          terraform -chdir=env/dev/us-west-2/vpc validate
+          terraform -chdir=env/dev/us-west-2/vpc plan

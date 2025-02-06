@@ -41,8 +41,5 @@ jobs:
 
       - name: Apply changes
         run: |
-          terraform -chdir=env/dev/us-west-2/resources init
-          terraform -chdir=env/dev/us-west-2/resources apply -auto-approve
-
-      - name: Upload statefile
-        run: aws s3 cp env/dev/us-west-2/resources/terraform.tfstate s3://remote-backend-for-tf/env/dev/us-west-2/resources/vpc/terraform.tfstate
+          terraform -chdir=env/dev/us-west-2/vpc init
+          terraform -chdir=env/dev/us-west-2/vpc apply -auto-approve

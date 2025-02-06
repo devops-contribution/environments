@@ -26,10 +26,7 @@ jobs:
           role-to-assume: arn:aws:iam::014337110715:role/github-actions-role
           aws-region: us-west-2
 
-      - name: Download Statefile
-        run: aws s3 cp  s3://remote-backend-for-tf/env/dev/us-west-2/resources/vpc/terraform.tfstate env/dev/us-west-2/resources/vpc/terraform.tfstate
-     
       - name: Destroy Terraform Resources
         run: |
-          terraform -chdir=env/dev/us-west-2/resources init
-          terraform -chdir=env/dev/us-west-2/resources destroy  -auto-approve
+          terraform -chdir=env/dev/us-west-2/vpc init
+          terraform -chdir=env/dev/us-west-2/vpc destroy  -auto-approve
