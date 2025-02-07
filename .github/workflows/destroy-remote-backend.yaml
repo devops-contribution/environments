@@ -8,7 +8,7 @@ permissions:
   contents: read  
 
 jobs:
-  provision-remote-backend:
+  destroy-remote-backend:
     runs-on: ubuntu-latest
 
     steps:
