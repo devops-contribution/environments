@@ -37,3 +37,5 @@ jobs:
           terraform -chdir=remote-backend-resource plan
           terraform -chdir=remote-backend-resource apply -auto-approve
 
+      - name: Push Statefile to S3
+        run: aws s3 cp remote-backend-resource/terraform.tfstate s3://terraform-remote-be-bucket/remote/terraform.tfstate
