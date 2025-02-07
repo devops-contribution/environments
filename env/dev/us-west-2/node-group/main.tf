@@ -32,7 +32,7 @@ data "terraform_remote_state" "eks" {
 
 module "node-group" {
   source           = "git::https://github.com/devops-contribution/shared-modules.git//modules/node-group?ref=main"
-  cluster_name     = data.terraform_remote_state.eks.outputs.name
+  cluster_name     = data.terraform_remote_state.eks.outputs.eks_cluster_name
   subnet_ids       = data.terraform_remote_state.vpc.outputs.public_subnets
   node_group_name  = var.node_group_name
   instance_types   = var.instance_types
