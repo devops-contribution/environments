@@ -3,7 +3,7 @@ variable "node_group_name"{
 }
 
 variable "instance_types" {
-  type = string
+  type = list(string)
 }
 
 variable "desired_size" {
