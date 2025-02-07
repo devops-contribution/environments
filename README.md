@@ -6,26 +6,32 @@ This repository contains Terraform configurations for managing infrastructure in
 
 ```
 .
-├── README.md                
-├── env                      
-│   └── dev                  
-│       └── us-west-2        
-│           ├── eks          
-│           │   ├── backend.tf          
-│           │   ├── main.tf             
-│           │   ├── outputs.tf          
-│           │   ├── terraform.tfvars    
-│           │   └── variables.tf        
-│           └── vpc          
-│               ├── backend.tf          
-│               ├── main.tf             
-│               ├── outputs.tf          
-│               ├── terraform.tfvars    
-│               └── variables.tf        
-└── remote-backend-resource   
-    ├── main.tf               
-    ├── terraform.tfvars       
-    └── variables.tf          
+├── README.md
+├── env
+│   └── dev
+│       └── us-west-2
+│           ├── eks
+│           │   ├── backend.tf
+│           │   ├── main.tf
+│           │   ├── outputs.tf
+│           │   ├── terraform.tfvars
+│           │   └── variables.tf
+│           ├── node-group
+│           │   ├── backend.tf
+│           │   ├── main.tf
+│           │   ├── terraform.tfvars
+│           │   └── variables.tf
+│           └── vpc
+│               ├── backend.tf
+│               ├── main.tf
+│               ├── outputs.tf
+│               ├── terraform.tfvars
+│               └── variables.tf
+└── remote-backend-resource
+    ├── main.tf
+    ├── terraform.tfvars
+    └── variables.tf
+
 ```
 
 ## Prerequisites
@@ -36,10 +42,11 @@ This repository contains Terraform configurations for managing infrastructure in
 
 ## Setup & Usage
 
-## This repo uses workflows extensively, see below.
+## This repo uses workflows extensively, and there is specific order of workflow execution. See below,
 - for initializing & creating the remote backend: use `Provision Remote Backend` 
 - for initializing & creating the VPC           : use `validate VPC`, this is auto-initiate the VPC creation after successful completion.
 - for initializing & creating the EKS           : use `validate EKS`, this is auto-initiate the EKS creation after successful completion.
+- for initializing & creating the Node Group           : use `validate Node Group`, this is auto-initiate the Node Group creation after successful completion.
 
 
 ## Remote State Management
