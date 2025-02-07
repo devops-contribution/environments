@@ -36,7 +36,7 @@ This repository contains Terraform configurations for managing infrastructure in
 
 ## Setup & Usage
 
-## This repo uses workflows extensively...
+## This repo uses workflows extensively, see below.
 - for initializing & creating the remote backend: use `Provision Remote Backend` 
 - for initializing & creating the VPC           : use `validate VPC`, this is auto-initiate the VPC creation after successful completion.
 - for initializing & creating the EKS           : use `validate EKS`, this is auto-initiate the EKS creation after successful completion.
