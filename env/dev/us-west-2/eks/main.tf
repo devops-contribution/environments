@@ -18,14 +18,12 @@ data "terraform_remote_state" "vpc" {
     bucket = var.bucket_name
     key    = "vpc/terraform.tfstate"
     region = var.region
-
   }
-
 }
 
 module "eks" {
   source           = "git::https://github.com/devops-contribution/shared-modules.git//modules/eks?ref=main"
   region           = var.region
   cluster_name     = var.cluster_name
-  subnet_ids       = data.terraform_remote_state.vpc.public_subnets
+  subnet_ids       = data.terraform_remote_state.vpc.outputs.public_subnets
 }
