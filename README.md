@@ -6,26 +6,26 @@ This repository contains Terraform configurations for managing infrastructure in
 
 ```
 .
-├── README.md                # Documentation for the repository
-├── env                      # Environment-specific Terraform configurations
-│   └── dev                  # Development environment
-│       └── us-west-2        # AWS region: us-west-2
-│           ├── eks          # EKS cluster configuration
-│           │   ├── backend.tf          # Remote state backend configuration
-│           │   ├── main.tf             # Main Terraform configuration
-│           │   ├── outputs.tf          # Outputs definition
-│           │   ├── terraform.tfvars    # Terraform variables
-│           │   └── variables.tf        # Variable definitions
-│           └── vpc          # VPC configuration
-│               ├── backend.tf          # Remote state backend configuration
-│               ├── main.tf             # Main Terraform configuration
-│               ├── outputs.tf          # Outputs definition
-│               ├── terraform.tfvars    # Terraform variables
-│               └── variables.tf        # Variable definitions
-└── remote-backend-resource   # Remote backend resources for state management
-    ├── main.tf               # Backend resource configuration
-    ├── terraform.tfvars       # Variables for backend setup
-    └── variables.tf          # Variable definitions
+├── README.md                
+├── env                      
+│   └── dev                  
+│       └── us-west-2        
+│           ├── eks          
+│           │   ├── backend.tf          
+│           │   ├── main.tf             
+│           │   ├── outputs.tf          
+│           │   ├── terraform.tfvars    
+│           │   └── variables.tf        
+│           └── vpc          
+│               ├── backend.tf          
+│               ├── main.tf             
+│               ├── outputs.tf          
+│               ├── terraform.tfvars    
+│               └── variables.tf        
+└── remote-backend-resource   
+    ├── main.tf               
+    ├── terraform.tfvars       
+    └── variables.tf          
 ```
 
 ## Prerequisites
