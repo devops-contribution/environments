@@ -21,9 +21,18 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
+data "terraform_remote_state" "eks" {
+  backend = "s3"
+  config  = {
+    bucket = var.bucket_name
+    key    = "eks/terraform.tfstate"
+    region = var.region
+  }
+}
+
 module "node-group" {
   source           = "git::https://github.com/devops-contribution/shared-modules.git//modules/node-group?ref=main"
-  cluster_name     = var.cluster_name
+  cluster_name     = data.terraform_remote_state.eks.outputs.name
   subnet_ids       = data.terraform_remote_state.vpc.outputs.public_subnets
   node_group_name  = var.node_group_name
   instance_types   = var.instance_types
