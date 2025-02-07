@@ -12,6 +12,17 @@ provider "aws" {
   }
 }
 
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config  = {
+    bucket = var.bucket_name
+    key    = "vpc/terraform.tfstate"
+    region = var.region
+
+  }
+
+}
+
 module "eks" {
   source           = "git::https://github.com/devops-contribution/shared-modules.git//modules/eks?ref=main"
   region           = var.region
