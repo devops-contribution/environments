@@ -1,4 +1,4 @@
-name: Remote Backend
+name: Provision Remote Backend
 
 on:
   workflow_dispatch:
