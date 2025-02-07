@@ -7,12 +7,12 @@ variable "instance_types" {
 }
 
 variable "desired_size" {
-  type = int
+  type = number
 }
 variable "max_size" {
-  type = int
+  type = number
 }
 
 variable  "min_size" {
-  type = int
+  type = number
 }
