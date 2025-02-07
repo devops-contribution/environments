@@ -16,3 +16,11 @@ variable "max_size" {
 variable  "min_size" {
   type = number
 }
+
+variable "bucket_name" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}
