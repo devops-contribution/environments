@@ -1,0 +1,35 @@
+name: Remote Backend
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read  
+
+jobs:
+  provision-remote-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+
+      - name: Configure AWS creds
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::014337110715:role/github-actions-role
+          aws-region: us-west-2
+
+      - name: Download Statefile
+        run: aws s3 cp s3://terraform-remote-be-bucket/remote/terraform.tfstate remote-backend-resource/terraform.tfstate
+
+      - name: Validate & Plan
+        run: |
+          terraform -chdir=remote-backend-resource init
+          terraform -chdir=remote-backend-resource destroy -auto-approve
