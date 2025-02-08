@@ -1,4 +1,4 @@
-#region                 = "us-west-2"
+region                 = "us-west-2"
 #bucket_name            = "terraform-remote-be-bucket"
 #table_name             = "terraform-lock-table"
 project_name           = "customer-01"
