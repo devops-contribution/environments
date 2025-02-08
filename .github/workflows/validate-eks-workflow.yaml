@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   terraform-validate-plan:
-    name: Terraform Validate & Plan
+    name: EKS Validate & Plan
     runs-on: ubuntu-latest
 
     steps:
