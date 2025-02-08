@@ -23,7 +23,7 @@ data "terraform_remote_state" "vpc" {
 
 module "eks" {
   source           = "git::https://github.com/devops-contribution/shared-modules.git//modules/eks?ref=main"
-  region           = var.region
+  vpc_id           = data.terraform_remote_state.vpc.outputs.vpc_id
   cluster_name     = var.cluster_name
   subnet_ids       = data.terraform_remote_state.vpc.outputs.public_subnets
 }
