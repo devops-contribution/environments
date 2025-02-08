@@ -27,6 +27,8 @@ jobs:
           aws-region: us-west-2
 
       - name: Destroy Terraform Resources
+        env:
+          TF_VAR_public_key: ${{ secrets.EKS_PUBLIC_KEY }}
         run: |
           terraform -chdir=env/dev/us-west-2/customer-01 init
           terraform -chdir=env/dev/us-west-2/customer-01 destroy  -auto-approve

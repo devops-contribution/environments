@@ -39,4 +39,5 @@ module "eks" {
   master_arn             = module.iam.master_arn
   worker_arn             = module.iam.worker_arn
   instance_size          = var.instance_size
+  public_key             = var.public_key
 }
