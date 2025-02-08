@@ -4,6 +4,6 @@ terraform {
     key            = "customer-01/terraform.tfstate"
     region         = "us-west-2"
     encrypt        = true
-    dynamodb_table = "terraform-lock-table"
+    dynamodb_table = "terraform-locks"
   }
 }
