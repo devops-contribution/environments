@@ -1,8 +1,8 @@
-name: Create VPC
+name: Create Cusomer-01
 
 on:
   workflow_run:
-    workflows: ["Validate VPC"]
+    workflows: ["Validate Customer-01"]
     types:
       - completed
 
@@ -41,5 +41,5 @@ jobs:
 
       - name: Apply changes
         run: |
-          terraform -chdir=env/dev/us-west-2/vpc init
-          terraform -chdir=env/dev/us-west-2/vpc apply -auto-approve
+          terraform -chdir=env/dev/us-west-2/customer-01 init
+          terraform -chdir=env/dev/us-west-2/customer-01 apply -auto-approve

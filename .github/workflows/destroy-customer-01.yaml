@@ -1,24 +1,18 @@
-name: Validate VPC
+name: Destroy Customer-01
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "env/dev/us-west-2/vpc/**"
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  terraform-validate-plan:
-    name: VPC Validate & Plan
+  destroy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Terraform
@@ -32,8 +26,7 @@ jobs:
           role-to-assume: arn:aws:iam::014337110715:role/github-actions-role
           aws-region: us-west-2
 
-      - name: Validate & Plan
+      - name: Destroy Terraform Resources
         run: |
-          terraform -chdir=env/dev/us-west-2/vpc init
-          terraform -chdir=env/dev/us-west-2/vpc validate
-          terraform -chdir=env/dev/us-west-2/vpc plan
+          terraform -chdir=env/dev/us-west-2/customer-01 init
+          terraform -chdir=env/dev/us-west-2/customer-01 destroy  -auto-approve
