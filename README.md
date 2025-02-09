@@ -55,6 +55,11 @@ aws sts assume-role --role-arn arn:aws:iam::014337110715:role/github-actions-rol
 ``` 
 
 - Once done, it will pop up a sccess key, secret access key and a token, export them into your cli and you are good to go. 
+- Now update your local kubeconfig file to allow kubectl to communicate with the EKS cluster using below command,
+
+```
+aws eks update-kubeconfig --region us-west-2 --name terraform-aws-eks
+```
 
 ## Contributing
 1. Fork the repository
