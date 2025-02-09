@@ -10,21 +10,14 @@ This repository contains Terraform configurations for managing infrastructure in
 ├── env
 │   └── dev
 │       └── us-west-2
-│           ├── eks
-│           │   ├── backend.tf
-│           │   ├── main.tf
-│           │   ├── outputs.tf
-│           │   ├── terraform.tfvars
-│           │   └── variables.tf
-│           ├── node-group
+│           ├── customer-01
 │           │   ├── backend.tf
 │           │   ├── main.tf
 │           │   ├── terraform.tfvars
 │           │   └── variables.tf
-│           └── vpc
+│           └── customer-02
 │               ├── backend.tf
 │               ├── main.tf
-│               ├── outputs.tf
 │               ├── terraform.tfvars
 │               └── variables.tf
 └── remote-backend-resource
@@ -32,6 +25,7 @@ This repository contains Terraform configurations for managing infrastructure in
     ├── terraform.tfvars
     └── variables.tf
 
+7 directories, 12 files
 ```
 
 ## Prerequisites
