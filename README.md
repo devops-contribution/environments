@@ -43,10 +43,10 @@ This repository contains Terraform configurations for managing infrastructure in
 ## Setup & Usage
 
 ## This repo uses workflows extensively, and there is specific order of workflow execution. See below,
-- for initializing & creating the remote backend: use `Provision Remote Backend` 
-- for initializing & creating the VPC           : use `validate VPC`, this will auto-initiate the VPC creation after successful validation completion.
-- for initializing & creating the EKS           : use `validate EKS`, this will auto-initiate the EKS creation after successful validation completion.
-- for initializing & creating the Node Group    : use `validate Node Group`, this will auto-initiate the Node Group creation after successful validation completion.
+- for initializing & creating the remote backend : use `Provision Remote Backend` 
+- for initializing & creating the VPC            : use `validate VPC`, this will auto-initiate the VPC creation after successful validation completion.
+- for initializing & creating the EKS            : use `validate EKS`, this will auto-initiate the EKS creation after successful validation completion.
+- for initializing & creating the Node Group     : use `validate Node Group`, this will auto-initiate the Node Group creation after successful validation completion.
 
 
 ## Remote State Management
