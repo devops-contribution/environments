@@ -41,5 +41,4 @@ module "eks" {
   instance_size          = var.instance_size
   public_key             = var.public_key
   name                   = var.name
-  version                = var.argo_version
 }

@@ -37,7 +37,3 @@ variable "region" {
 variable "name" {
   type = string
 }
-
-variable "argo_version" {
-  type = string
-}
