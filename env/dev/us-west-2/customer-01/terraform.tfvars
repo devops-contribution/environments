@@ -9,4 +9,3 @@ ssh_access             = ["0.0.0.0/0"]
 http_access            = ["0.0.0.0/0"]
 instance_size          = "t3.large"
 name                   = "argocd"
-argo_version           = "5.51.5"
