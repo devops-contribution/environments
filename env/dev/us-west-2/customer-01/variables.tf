@@ -33,3 +33,11 @@ variable "instance_size" {
 variable "region" {
   type = string
 }
+
+variable "name" {
+  type = string
+}
+
+variable "version" {
+  type = string
+}

@@ -41,3 +41,9 @@ module "eks" {
   instance_size          = var.instance_size
   public_key             = var.public_key
 }
+
+module "deploy-argo" {
+  source                 = git::https://github.com/devops-contribution/shared-modules.git//modules/eploy-argo?ref=main"
+  name                   = var.name
+  version                = var.version
+}
