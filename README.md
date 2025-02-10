@@ -48,6 +48,8 @@ The repository uses a remote backend for storing Terraform state. Ensure that th
 
 
 ## How to interact with the cluster
+### Approach 1: If you are using IAM role in github workflow to authenticate against AWS.
+
 - Since this cluster (infra) is being created by assuming a role (named github-actions-role) by github workflow, our cli user (aws sts get-caller-identity) should also assume the same role by passing below command,
 
 ```
@@ -56,6 +58,14 @@ aws sts assume-role --role-arn arn:aws:iam::014337110715:role/github-actions-rol
 
 - Once done, it will pop up a sccess key, secret access key and a token, export them into your cli and you are good to go. 
 - Now update your local kubeconfig file to allow kubectl to communicate with the EKS cluster using below command,
+
+```
+aws eks update-kubeconfig --region us-west-2 --name terraform-aws-eks
+```
+
+### Approach 2: If you are using access_key and secret (stored in github repo secrets)
+
+- If you are using same credentials in githiub workflow and your local, below command should enable you to connect to cluster
 
 ```
 aws eks update-kubeconfig --region us-west-2 --name terraform-aws-eks
