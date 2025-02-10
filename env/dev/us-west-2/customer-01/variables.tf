@@ -38,6 +38,6 @@ variable "name" {
   type = string
 }
 
-variable "version" {
+variable "argo_version" {
   type = string
 }

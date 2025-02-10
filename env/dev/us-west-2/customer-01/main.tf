@@ -43,7 +43,7 @@ module "eks" {
 }
 
 module "deploy-argo" {
-  source                 = git::https://github.com/devops-contribution/shared-modules.git//modules/eploy-argo?ref=main"
+  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/eploy-argo?ref=main"
   name                   = var.name
-  version                = var.version
+  version                = var.argo_version
 }
