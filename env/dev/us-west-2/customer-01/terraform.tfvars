@@ -8,4 +8,3 @@ public_subnet_az2_cidr = "10.0.2.0/24"
 ssh_access             = ["0.0.0.0/0"]
 http_access            = ["0.0.0.0/0"]
 instance_size          = "t3.large"
-name                   = "argocd"
