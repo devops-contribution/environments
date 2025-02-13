@@ -76,7 +76,7 @@ jobs:
       
       - name: Delpoy Core Components
         run: |
-          #kubectl apply -f core/argo/projects/core-components-project.yaml
+          kubectl apply -f core/argo/projects/core-components-project.yaml
           kubectl apply -f core/argo/projects/workloads-project.yaml
-          #kubectl apply -f core/argo/applications/core-components-applicationset.yaml
+          kubectl apply -f core/argo/applications/core-components-applicationset.yaml
           kubectl apply -f core/argo/applications/workloads-applicationset.yaml
