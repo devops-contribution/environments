@@ -52,3 +52,31 @@ jobs:
         run: |
           terraform -chdir=env/dev/us-west-2/customer-01 init
           terraform -chdir=env/dev/us-west-2/customer-01 apply -auto-approve
+
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+      
+      - name: Update KubeConfig
+        run: aws eks update-kubeconfig --region us-west-2 --name terraform-aws-eks
+    
+      - name: Deploy ArgoCD
+        run: |
+          kubectl create namespace argocd
+          kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+          kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
+ 
+      - name: Checkout K8s-apps Repo
+        uses: actions/checkout@v4
+        with:
+          repository: devops-contribution/k8s-apps
+      
+      - name: Delpoy Core Components
+        run: |
+          kubectl apply -f core/argo/projects/core-components-project.yaml
+          kubectl apply -f core/argo/projects/workloads-project.yaml
+          kubectl apply -f core/argo/applications/core-components-applicationset.yaml
+          kubectl apply -f core/argo/applications/workloads-applicationset.yaml
