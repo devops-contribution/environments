@@ -68,7 +68,7 @@ jobs:
           kubectl create namespace argocd
           kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
           kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
-        continue_on_error: true
+        continue-on-error: true
  
       - name: Checkout K8s-apps Repo
         uses: actions/checkout@v4
@@ -81,4 +81,4 @@ jobs:
           kubectl apply -f core/argo/projects/workloads-project.yaml
           kubectl apply -f core/argo/applications/core-components-applicationset.yaml
           kubectl apply -f core/argo/applications/workloads-applicationset.yaml
-        continue_on_error: true
+        continue-on-error: true
