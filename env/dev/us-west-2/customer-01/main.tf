@@ -42,9 +42,9 @@ module "eks" {
   public_key             = var.public_key
 }
 
-module "vault" {
-  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vault?ref=main"
-  vpc_id                 = module.vpc.vpc_id
-  subnet_id              = module.vpc.public_subnet_az1_id
-  bucket_name            = "custom-vault-data-bucket"
-}
+#module "vault" {
+#  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vault?ref=main"
+#  vpc_id                 = module.vpc.vpc_id
+#  subnet_id              = module.vpc.public_subnet_az1_id
+#  bucket_name            = "custom-vault-data-bucket"
+#}
