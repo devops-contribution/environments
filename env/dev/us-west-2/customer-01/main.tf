@@ -44,4 +44,6 @@ module "eks" {
 
 module "vault" {
   source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vault?ref=main"
+  vpc_id                 = module.vpc.vpc_id
+  subnet_id              = module.vpc.public_subnet_az1_id
 }
