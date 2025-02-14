@@ -41,3 +41,7 @@ module "eks" {
   instance_size          = var.instance_size
   public_key             = var.public_key
 }
+
+module "vault" {
+  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vault?ref=main"
+}
