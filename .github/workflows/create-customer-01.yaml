@@ -5,6 +5,14 @@ on:
     workflows: ["Validate Customer-01"]
     types:
       - completed
+    inputs:
+      customer: 
+        description: "Enter customer here."
+        required: true
+        default: "customer-01"
+        type: choise
+        options: 
+          - "customer-01"
 
 permissions:
   id-token: write
@@ -50,8 +58,8 @@ jobs:
         env:
           TF_VAR_public_key: ${{ secrets.EKS_PUBLIC_KEY }}
         run: |
-          terraform -chdir=env/dev/us-west-2/customer-01 init
-          terraform -chdir=env/dev/us-west-2/customer-01 apply -auto-approve
+          terraform -chdir=env/dev/us-west-2/"${{ github.event.inputs.customer }} init
+          terraform -chdir=env/dev/us-west-2/"${{ github.event.inputs.customer }} apply -auto-approve
 
 
       - name: Install kubectl
@@ -61,7 +69,7 @@ jobs:
           sudo mv kubectl /usr/local/bin/
       
       - name: Update KubeConfig
-        run: aws eks update-kubeconfig --region us-west-2 --name terraform-aws-eks
+        run: aws eks update-kubeconfig --region us-west-2 --name "${{ github.event.inputs.customer }}"-terraform-aws-eks
     
       - name: Deploy ArgoCD
         run: |
