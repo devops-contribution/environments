@@ -40,7 +40,7 @@ module "eks" {
   worker_arn             = module.iam.worker_arn
   instance_size          = var.instance_size
   public_key             = var.public_key
-  customer               = customer-01""
+  customer               = "customer-01"
 }
 
 module "vault" {
