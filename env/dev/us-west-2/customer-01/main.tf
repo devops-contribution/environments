@@ -14,10 +14,10 @@ provider "aws" {
 
 module "vpc" { 
   source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vpc?ref=main"
-  #project_name           = var.project_name    
   vpc_cidr               = var.vpc_cidr
   public_subnet_az1_cidr = var.public_subnet_az1_cidr
   public_subnet_az2_cidr = var.public_subnet_az2_cidr
+  customer               = "customer-01"
 }
 
 module "iam" {
@@ -40,6 +40,7 @@ module "eks" {
   worker_arn             = module.iam.worker_arn
   instance_size          = var.instance_size
   public_key             = var.public_key
+  customer               = customer-01""
 }
 
 module "vault" {
@@ -47,4 +48,5 @@ module "vault" {
   vpc_id                 = module.vpc.vpc_id
   subnet_id              = module.vpc.public_subnet_az1_id
   bucket_name            = "custom-vault-data-bucket"
+  customer               = "customer-01"
 }
