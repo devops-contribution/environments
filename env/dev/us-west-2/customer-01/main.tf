@@ -50,3 +50,9 @@ module "vault" {
   bucket_name            = "custom-vault-data-bucket"
   customer               = "customer-01"
 }
+
+maodule "api_gateway" {
+  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/api-gateways?ref=main"
+  alb_dns                = "http://a46670596b7f142ba8ab2b1b6480d5c3-45954369.us-west-2.elb.amazonaws.com"
+
+}
