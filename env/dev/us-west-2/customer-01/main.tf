@@ -13,24 +13,23 @@ provider "aws" {
 }
 
 module "vpc" { 
-  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vpc?ref=main"
-  vpc_cidr               = var.vpc_cidr
+  source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/vpc?ref=main"
+  vpc_cidr                = var.vpc_cidr
   private_subnet_az1_cidr = var.private_subnet_az1_cidr
   private_subnet_az2_cidr = var.private_subnet_az2_cidr
   public_subnet_nat_cidr  = var.public_subnet_nat_cidr
-  customer               = "customer-01"
+  customer                = "customer-01"
 }
 
-#module "iam" {
-#  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/iam?ref=main"
-#}
+module "iam" {
+  source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/iam?ref=main"
+}
 
-#module "security_group" {
-#  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/security-group?ref=main"
-#  vpc_id                 = module.vpc.vpc_id
-#  ssh_access             = var.ssh_access
-#  http_access            = var.http_access
-#}
+module "security_group" {
+  source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/security-group?ref=main"
+  vpc_id                  = module.vpc.vpc_id
+  vpc_cidr                = var.vpc_cidr
+}
 
 #module "eks" {
 #  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/eks?ref=main"
