@@ -15,8 +15,9 @@ provider "aws" {
 module "vpc" { 
   source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vpc?ref=main"
   vpc_cidr               = var.vpc_cidr
-  public_subnet_az1_cidr = var.public_subnet_az1_cidr
-  public_subnet_az2_cidr = var.public_subnet_az2_cidr
+  private_subnet_az1_cidr = var.private_subnet_az1_cidr
+  private_subnet_az2_cidr = var.private_subnet_az2_cidr
+  public_subnet_nat_cidr  = var.public_subnet_nat_cidr
   customer               = "customer-01"
 }
 
