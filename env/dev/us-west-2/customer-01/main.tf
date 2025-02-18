@@ -51,11 +51,12 @@ module "eks" {
 #  customer               = "customer-01"
 #}
 
-#module "api_gateway" {
-#  source                     = "git::https://github.com/devops-contribution/shared-modules.git//modules/api-gateways?ref=main"
-#  alb_dns                    = "http://internal-a3275bfe036344067b0c72d2bbde29cb-1085928719.us-west-2.elb.amazonaws.com"
-#  region                     = "us-west-2"
-#  customer                   = "customer-01"
-#  vpc_link_security_group_id = module.security_group.vpc_link_sg_id
-#  subnet_ids                 = [module.vpc.private_subnet_az1_id, module.vpc.private_subnet_az2_id]
-#}
+module "api_gateway" {
+  source                     = "git::https://github.com/devops-contribution/shared-modules.git//modules/api-gateways?ref=main"
+  #alb_dns                    = "http://internal-a3275bfe036344067b0c72d2bbde29cb-1085928719.us-west-2.elb.amazonaws.com"
+  alb_dns                    = "http://ad7b1558442f0427e90a7bda79d39f70-4e75b2e4c6e06e7e.elb.us-west-2.amazonaws.com"
+  region                     = "us-west-2"
+  customer                   = "customer-01"
+  vpc_link_security_group_id = module.security_group.vpc_link_sg_id
+  subnet_ids                 = [module.vpc.private_subnet_az1_id, module.vpc.private_subnet_az2_id]
+}
