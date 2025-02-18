@@ -54,7 +54,7 @@ module "eks" {
 module "api_gateway" {
   source                     = "git::https://github.com/devops-contribution/shared-modules.git//modules/api-gateways?ref=main"
   #alb_dns                    = "http://internal-a3275bfe036344067b0c72d2bbde29cb-1085928719.us-west-2.elb.amazonaws.com"
-  alb_dns                    = "arn:aws:elasticloadbalancing:us-west-2:014337110715:listener/net/a7d56ef45a22348cc91277da765897f9/17b06517c98d27da/e3b4d40b815506c3"
+  alb_dns                    = "arn:aws:elasticloadbalancing:us-west-2:014337110715:listener/net/a7d56ef45a22348cc91277da765897f9/17b06517c98d27da/86fa3fc93cf3768c"
   region                     = "us-west-2"
   customer                   = "customer-01"
   vpc_link_security_group_id = module.security_group.vpc_link_sg_id
