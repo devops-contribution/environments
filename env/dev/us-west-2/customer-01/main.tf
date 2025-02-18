@@ -31,17 +31,17 @@ module "security_group" {
   vpc_cidr                = var.vpc_cidr
 }
 
-#module "eks" {
-#  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/eks?ref=main"
-#  public_subnet_az1_id   = module.vpc.public_subnet_az1_id
-#  public_subnet_az2_id   = module.vpc.public_subnet_az2_id
-#  eks_security_group_id  = module.security_group.eks_security_group_id
-#  master_arn             = module.iam.master_arn
-#  worker_arn             = module.iam.worker_arn
-#  instance_size          = var.instance_size
-#  public_key             = var.public_key
-#  customer               = "customer-01"
-#}
+module "eks" {
+  source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/eks?ref=main"
+  private_subnet_az1_id   = module.vpc.private_subnet_az1_id
+  private_subnet_az2_id   = module.vpc.private_subnet_az2_id
+  eks_security_group_id   = module.security_group.eks_security_group_id
+  master_arn              = module.iam.master_arn
+  worker_arn              = module.iam.worker_arn
+  instance_size           = var.instance_size
+  public_key              = var.public_key
+  customer                = "customer-01"
+}
 
 #module "vault" {
 #  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vault?ref=main"
