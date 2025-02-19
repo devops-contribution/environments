@@ -47,5 +47,5 @@ module "vault" {
   vpc_id                 = module.vpc.vpc_id
   subnet_id              = module.vpc.public_subnets[0]
   bucket_name            = "custom-vault-data-bucket"
-  customer               = "${local.customer_name}
+  customer               = "${local.customer_name}"
 }
