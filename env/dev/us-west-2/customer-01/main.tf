@@ -41,10 +41,11 @@ module "eks" {
   cluster_endpoint_public_access  = true  
 }
 
-#module "vault" {
-#  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vault?ref=main"
-#  vpc_id                 = module.vpc.vpc_id
-#  subnet_id              = module.vpc.public_subnet_az1_id
-#  bucket_name            = "custom-vault-data-bucket"
-#  customer               = "customer-01"
-#}
+module "vault" {
+  source                 = "git::https://github.com/devops-contribution/shared-modules.git//modules/vault?ref=main"
+
+  vpc_id                 = module.vpc.vpc_id
+  subnet_id              = module.vpc.public_subnets[0]
+  bucket_name            = "custom-vault-data-bucket"
+  customer               = "${local.customer_name}
+}
