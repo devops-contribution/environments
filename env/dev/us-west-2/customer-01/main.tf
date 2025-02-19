@@ -12,35 +12,33 @@ provider "aws" {
   }
 }
 
+locals {
+  customer_name = "Milton"
+}
+
 module "vpc" { 
   source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/vpc?ref=main"
-  vpc_cidr                = var.vpc_cidr
-  private_subnet_az1_cidr = var.private_subnet_az1_cidr
-  private_subnet_az2_cidr = var.private_subnet_az2_cidr
-  public_subnet_nat_cidr  = var.public_subnet_nat_cidr
-  customer                = "customer-01"
-}
+  
+  name                    = "${local.customer_name}-vpc"
+  cidr                    = "10.0.0.0/16"
+  azs                     = data.aws_availability_zones.available.names
+  private_subnets         = ["10.0.1.0/24", "10.0.2.0/24"]
+  public_subnets          = ["10.0.3.0/24", "10.0.4.0/24"]
 
-module "iam" {
-  source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/iam?ref=main"
-}
-
-module "security_group" {
-  source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/security-group?ref=main"
-  vpc_id                  = module.vpc.vpc_id
-  vpc_cidr                = var.vpc_cidr
+  enable_nat_gateway      = true
+  single_nat_gateway      = true
+  enable_dns_hostnames    = true
+  enable_dns_support      = true
 }
 
 module "eks" {
   source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/eks?ref=main"
-  private_subnet_az1_id   = module.vpc.private_subnet_az1_id
-  private_subnet_az2_id   = module.vpc.private_subnet_az2_id
-  eks_security_group_id   = module.security_group.eks_security_group_id
-  master_arn              = module.iam.master_arn
-  worker_arn              = module.iam.worker_arn
-  instance_size           = var.instance_size
-  public_key              = var.public_key
-  customer                = "customer-01"
+
+  cluster_name            = "${local.customer_name}-cluster"
+  cluster_version         = "1.31"
+  vpc_id                  = module.vpc.vpc_id
+  subnet_ids              = module.vpc.private_subnets
+  cluster_endpoint_public_access  = true  
 }
 
 #module "vault" {
@@ -50,13 +48,3 @@ module "eks" {
 #  bucket_name            = "custom-vault-data-bucket"
 #  customer               = "customer-01"
 #}
-
-module "api_gateway" {
-  source                     = "git::https://github.com/devops-contribution/shared-modules.git//modules/api-gateways?ref=main"
-  #alb_dns                    = "http://internal-a3275bfe036344067b0c72d2bbde29cb-1085928719.us-west-2.elb.amazonaws.com"
-  alb_dns                    = "arn:aws:elasticloadbalancing:us-west-2:014337110715:listener/net/a7d56ef45a22348cc91277da765897f9/17b06517c98d27da/86fa3fc93cf3768c"
-  region                     = "us-west-2"
-  customer                   = "customer-01"
-  vpc_link_security_group_id = module.security_group.vpc_link_sg_id
-  subnet_ids                 = [module.vpc.private_subnet_az1_id, module.vpc.private_subnet_az2_id]
-}
