@@ -16,6 +16,8 @@ locals {
   customer_name = "Milton"
 }
 
+data "aws_availability_zones" "available" {}
+
 module "vpc" { 
   source                  = "git::https://github.com/devops-contribution/shared-modules.git//modules/vpc?ref=main"
   
